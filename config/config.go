@@ -36,7 +36,7 @@ func Load() (*Config, error) {
 
 	cfg := &Config{
 		OpenAIAPIKey: apiKey,
-		Host:         getEnv("HOST", "0.0.0.0"),
+		Host:         getEnv("HOST", "localhost"), // changed from 0.0.0.0 - prefer localhost for local dev
 		OpenAIModel:  getEnv("OPENAI_MODEL", "gpt-4o-mini"),
 		LogLevel:     getEnv("LOG_LEVEL", "info"),
 		SystemPrompt: getEnv("SYSTEM_PROMPT", "You are a helpful, harmless, and honest AI assistant."),
