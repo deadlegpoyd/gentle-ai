@@ -83,13 +83,16 @@ func NewConversation(id, systemPrompt string) *Conversation {
 }
 
 // AddMessage appends a new message to the conversation and updates the timestamp.
+// Both the message timestamp and the conversation UpdatedAt are set to the same
+// instant so they stay consistent with each other.
 func (c *Conversation) AddMessage(role Role, content string) {
+	now := time.Now()
 	c.Messages = append(c.Messages, Message{
 		Role:      role,
 		Content:   content,
-		CreatedAt: time.Now(),
+		CreatedAt: now,
 	})
-	c.UpdatedAt = time.Now()
+	c.UpdatedAt = now
 }
 
 // LastAssistantMessage returns the most recent assistant message, or nil if none exists.
